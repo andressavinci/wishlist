@@ -1,9 +1,11 @@
 import React from 'react';
-import { render, screen } from 'setupTests';
-import { App } from 'components/Layout/App';
+import { render } from 'setupTests';
+import { App } from 'components/Layout';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('<App />', () => {
+  test('should render App', () => {
+    const { getByTestId } = render(<App />);
+    const element = getByTestId('MN_APP');
+    expect(element).toBeInTheDocument();
+  });
 });
