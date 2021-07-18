@@ -1,12 +1,16 @@
 import React from 'react';
 import { node } from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 
-import { App } from 'components/Layout/App';
+import { GlobalStyles, theme } from 'styles';
 
-const Root = () => {
+const Root = ({ children }) => {
+  const { main } = theme;
+
   return (
     <>
-      <App />
+      <GlobalStyles />
+      <ThemeProvider theme={main}>{children}</ThemeProvider>
     </>
   );
 };
