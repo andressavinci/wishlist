@@ -3,6 +3,6 @@
     "yarn prettier:check",
     "yarn lint",
     "yarn lint:css",
-    "yarn unit"
+    "yarn unit --passWithNoTests"
   ]
 }

@@ -5,13 +5,16 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
+    "@testing-library/react-hooks": "^5.1.0",
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "styled-components": "^5.2.1",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "cypress": "^6.7.1",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
@@ -25,7 +28,8 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.1.2",
-    "stylelint-processor-styled-components": "^1.10.0"
+    "stylelint-processor-styled-components": "^1.10.0",
+    "jest-styled-components": "^7.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,6 +37,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "unit": "react-scripts test --verbose --watchAll=false",
+    "coverage": "react-scripts test --coverage --watchAll=false",
+    "e2e": "cypress open",
+    "cypress:info": "cypress info",
+    "cypress:run": "cypress run",
+    "cypress:verify": "cypress verify",
+    "cypress:version": "cypress version",
     "lint": "eslint ./",
     "lint:css": "stylelint './src/**/*.js'",
     "lint:fix": "yarn lint --fix",
@@ -45,6 +55,28 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(js|jsx)?$": "babel-jest"
+    },
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/reportWebVitals.js",
+      "!<rootDir>/src/index.js",
+      "!<rootDir>/src/config/index.js",
+      "!<rootDir>/src/styles/**/*.js",
+      "!<rootDir>/src/components/**/styles.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
   },
   "browserslist": {
     "production": [
