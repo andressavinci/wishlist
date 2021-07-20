@@ -1,6 +1,7 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { Header } from 'components/Layout';
+import { Container } from 'components/UI';
 
 const PageWishlist = ({ match }) => {
   const {
@@ -10,10 +11,10 @@ const PageWishlist = ({ match }) => {
   return (
     <>
       <Header />
-      <main>
-        <h1>PageWishlist</h1>
-        <h2>ProductId: {productId}</h2>
-      </main>
+      <Container as="main">
+        <h1>Lista de desejos</h1>
+        <h2>{productId}</h2>
+      </Container>
     </>
   );
 };

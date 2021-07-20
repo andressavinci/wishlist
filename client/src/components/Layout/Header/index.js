@@ -1,16 +1,22 @@
 import React from 'react';
-import { Links, Logo, Search } from 'components/UI';
+import { Container, Links, Logo, Search } from 'components/UI';
 import * as S from './styles';
 
 const Header = () => {
   return (
-    <S.HeaderContainer data-testid="MN_HEADER">
-      <Logo />
-      <S.HeaderWrapper>
-        <Links />
-        <Search />
-      </S.HeaderWrapper>
-    </S.HeaderContainer>
+    <S.Header data-testid="MN_HEADER">
+      <Container as="section" direction="row">
+        <S.HeaderContainer>
+          <S.HeaderLogoWrapper>
+            <Logo />
+          </S.HeaderLogoWrapper>
+          <S.HeaderContentWrapper>
+            <Links />
+            <Search />
+          </S.HeaderContentWrapper>
+        </S.HeaderContainer>
+      </Container>
+    </S.Header>
   );
 };
 

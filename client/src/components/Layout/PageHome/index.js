@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Header } from 'components/Layout';
+import { Container } from 'components/UI';
 
 const PageHome = () => {
   const [response, setResponse] = useState();
@@ -21,10 +22,10 @@ const PageHome = () => {
   return (
     <>
       <Header />
-      <main>
-        <h2>HOME</h2>
+      <Container as="main">
+        <h2>Lista de Produtos</h2>
         <div>{response}</div>
-      </main>
+      </Container>
     </>
   );
 };
