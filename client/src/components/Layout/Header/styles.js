@@ -2,11 +2,15 @@ import styled from 'styled-components/macro';
 import { media } from 'styles';
 
 export const Header = styled.header`
+  margin-bottom: 32px;
+`;
+
+export const HeaderContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.rebeccapurple};
   padding: 32px 0;
 `;
 
-export const HeaderContainer = styled.div`
+export const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   ${media.tablet`
@@ -16,6 +20,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const HeaderLogoWrapper = styled.div`
+  align-self: flex-start;
   ${media.tablet`
     width: 25%;
     text-align: left;
@@ -32,4 +37,9 @@ export const HeaderContentWrapper = styled.div`
     margin-top: 0;
   `}
   width: 100%;
+`;
+
+export const HeaderBreadcrumbWrapper = styled.div`
+  align-content: flex-start;
+  margin: 16px 0;
 `;

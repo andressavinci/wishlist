@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components/macro';
 import { media } from 'styles';
 
 export const Container = styled.div`
-  align-items: center;
   display: flex;
   margin: 0 auto;
   max-width: 540px;

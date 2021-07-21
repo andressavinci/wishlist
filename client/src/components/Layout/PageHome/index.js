@@ -19,9 +19,15 @@ const PageHome = () => {
     return body;
   };
 
+  const breadcrumbItems = [
+    {
+      text: 'Home',
+    },
+  ];
+
   return (
     <>
-      <Header />
+      <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
         <h2>Lista de Produtos</h2>
         <div>{response}</div>

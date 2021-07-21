@@ -7,7 +7,7 @@ const App = () => {
     <div data-testid="MN_APP">
       <Switch>
         <Route exact path="/" component={PageHome} />
-        <Route path="/wishlist/:productId" component={PageWishlist} />
+        <Route path="/wishlist" component={PageWishlist} />
         <Route component={Page404} />
       </Switch>
     </div>

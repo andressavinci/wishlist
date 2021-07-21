@@ -8,9 +8,19 @@ const PageWishlist = ({ match }) => {
     params: { productId },
   } = match;
 
+  const breadcrumbItems = [
+    {
+      text: 'Home',
+      url: '/',
+    },
+    {
+      text: 'Lista de desejos',
+    },
+  ];
+
   return (
     <>
-      <Header />
+      <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
         <h1>Lista de desejos</h1>
         <h2>{productId}</h2>
