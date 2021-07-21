@@ -12,7 +12,7 @@ const PageHome = () => {
   }, []);
 
   const callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch('/api/products');
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
 
@@ -30,7 +30,7 @@ const PageHome = () => {
       <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
         <h2>Lista de Produtos</h2>
-        <div>{response}</div>
+        {console.log(response)}
       </Container>
     </>
   );
