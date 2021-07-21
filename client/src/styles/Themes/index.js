@@ -1,6 +1,11 @@
 const colors = {
   white: '#fff',
   rebeccapurple: '#663399',
+  yellow: '#ffd500',
+  lightestgrey: '#f8f8f8',
+  lightgrey: '#edf0ef',
+  grey: '#6f7974',
+  darkgrey: '#1F2D27',
   black: '#000',
 };
 

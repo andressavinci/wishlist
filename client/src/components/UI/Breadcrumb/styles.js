@@ -4,7 +4,7 @@ export const BreadcrumbWrapper = styled.div`
   color: ${({ theme }) => theme.colors.black};
   display: flex;
   flex-direction: row;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 `;
 
 export const BreadcrumbList = styled.ol`
