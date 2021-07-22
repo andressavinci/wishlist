@@ -1,3 +1,4 @@
+import useDebounce from './useDebounce';
 import useLocalStorage from 'hooks/useLocalStorage';
 
-export { useLocalStorage };
+export { useDebounce, useLocalStorage };

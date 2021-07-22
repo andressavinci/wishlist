@@ -3,6 +3,7 @@ import { node } from 'prop-types';
 import { ThemeProvider } from 'styled-components/macro';
 import { GlobalStyles, theme } from 'styles';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { SearchContextProvider } from 'contexts';
 
 const Root = ({ children }) => {
   const { main } = theme;
@@ -10,7 +11,9 @@ const Root = ({ children }) => {
   return (
     <Router>
       <GlobalStyles />
-      <ThemeProvider theme={main}>{children}</ThemeProvider>
+      <ThemeProvider theme={main}>
+        <SearchContextProvider>{children}</SearchContextProvider>
+      </ThemeProvider>
     </Router>
   );
 };

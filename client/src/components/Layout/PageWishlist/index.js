@@ -1,16 +1,32 @@
-import React from 'react';
-import { object } from 'prop-types';
+import React, { useContext, useEffect, useState } from 'react';
 import { Header } from 'components/Layout';
 import { Card, Container } from 'components/UI';
 import * as S from './styles';
-import { useLocalStorage } from 'hooks';
+import { useDebounce, useLocalStorage } from 'hooks';
+import { SearchContext } from 'contexts';
 
 const PageWishlist = () => {
+  const [productsArray, setProductsArray] = useState();
+
+  const { search } = useContext(SearchContext);
+  const debouncedSearch = useDebounce(search, 500);
+  const isSearchFieldEmpty = !search || search === '';
+
   const isProductAmongWishlist = (arr, id) => arr.some((el) => el.id === id);
   const [storedWishlistProducts, setStoredWishlistProducts] = useLocalStorage(
     'mn_wishlist_products',
     []
   );
+
+  useEffect(() => {
+    if (isSearchFieldEmpty) {
+      setProductsArray(storedWishlistProducts);
+      return;
+    }
+    setProductsArray(() =>
+      storedWishlistProducts?.filter((el) => el.title === debouncedSearch)
+    );
+  }, [debouncedSearch]);
 
   const toggleWishlistProducts = (product) =>
     setStoredWishlistProducts((prevState) => {
@@ -36,8 +52,8 @@ const PageWishlist = () => {
       <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
         <S.WishlistCardsWrapper>
-          {storedWishlistProducts.length ? (
-            Object.values(storedWishlistProducts).map((obj, index) => (
+          {productsArray?.length ? (
+            Object.values(productsArray).map((obj, index) => (
               <Card
                 id={obj.id}
                 image={obj.image}
@@ -58,11 +74,6 @@ const PageWishlist = () => {
       </Container>
     </>
   );
-};
-
-PageWishlist.propTypes = {
-  match: object,
-  location: object,
 };
 
 export default PageWishlist;

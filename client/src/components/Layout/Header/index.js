@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { array } from 'prop-types';
 import { Breadcrumb, Container, Links, Logo, Search } from 'components/UI';
 import * as S from './styles';
 import { Link } from 'react-router-dom';
+import { SearchContext } from 'contexts';
 
 const Header = ({ breadcrumbItems }) => {
+  const { search, setSearch } = useContext(SearchContext);
+
   return (
     <S.Header data-testid="MN_HEADER">
       <S.HeaderContainer>
@@ -17,7 +20,7 @@ const Header = ({ breadcrumbItems }) => {
             </S.HeaderLogoWrapper>
             <S.HeaderContentWrapper>
               <Links />
-              <Search />
+              <Search value={search} setValue={setSearch} />
             </S.HeaderContentWrapper>
           </S.HeaderWrapper>
         </Container>

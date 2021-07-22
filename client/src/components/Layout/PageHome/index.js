@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Header } from 'components/Layout';
 import { Card, Container } from 'components/UI';
 import * as S from './styles';
-import { useLocalStorage } from 'hooks';
+import { useDebounce, useLocalStorage } from 'hooks';
+import { SearchContext } from 'contexts';
 
 const PageHome = () => {
-  const [response, setResponse] = useState();
+  const [products, setProducts] = useState();
+  const [productsArray, setproductsArray] = useState();
+
+  const { search } = useContext(SearchContext);
+  const debouncedSearch = useDebounce(search, 500);
+  const isSearchFieldEmpty = !search || search === '';
+
   const isProductAmongWishlist = (arr, id) => arr.some((el) => el.id === id);
   const [storedWishlistProducts, setStoredWishlistProducts] = useLocalStorage(
     'mn_wishlist_products',
@@ -13,12 +20,20 @@ const PageHome = () => {
   );
 
   useEffect(() => {
-    callApi()
-      .then((res) => setResponse(res.express))
+    if (isSearchFieldEmpty) {
+      setproductsArray(products);
+      return;
+    }
+    setproductsArray(() => products?.filter((el) => el.title === debouncedSearch));
+  }, [debouncedSearch]);
+
+  useEffect(() => {
+    getProducts()
+      .then((res) => setProducts(res.express.products))
       .catch((err) => console.log(err));
   }, []);
 
-  const callApi = async () => {
+  const getProducts = async () => {
     const response = await fetch('/api/products');
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
@@ -46,8 +61,8 @@ const PageHome = () => {
       <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
         <S.HomeCardsWrapper>
-          {response &&
-            Object.values(response.products).map((obj, index) => (
+          {productsArray?.length &&
+            Object.values(productsArray).map((obj, index) => (
               <Card
                 id={obj.id}
                 image={obj.image}
