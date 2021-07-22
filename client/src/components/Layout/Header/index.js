@@ -2,6 +2,7 @@ import React from 'react';
 import { array } from 'prop-types';
 import { Breadcrumb, Container, Links, Logo, Search } from 'components/UI';
 import * as S from './styles';
+import { Link } from 'react-router-dom';
 
 const Header = ({ breadcrumbItems }) => {
   return (
@@ -10,7 +11,9 @@ const Header = ({ breadcrumbItems }) => {
         <Container as="section" direction="row">
           <S.HeaderWrapper>
             <S.HeaderLogoWrapper>
-              <Logo />
+              <Link to={'/'} title="MagaNets">
+                <Logo />
+              </Link>
             </S.HeaderLogoWrapper>
             <S.HeaderContentWrapper>
               <Links />
