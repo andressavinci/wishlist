@@ -26,7 +26,7 @@ const PageWishlist = () => {
     setProductsArray(() =>
       storedWishlistProducts?.filter((el) => el.title === debouncedSearch)
     );
-  }, [debouncedSearch]);
+  }, [debouncedSearch, storedWishlistProducts]);
 
   const toggleWishlistProducts = (product) =>
     setStoredWishlistProducts((prevState) => {

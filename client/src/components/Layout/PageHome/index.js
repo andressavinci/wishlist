@@ -4,6 +4,7 @@ import { Card, Container } from 'components/UI';
 import * as S from './styles';
 import { useDebounce, useLocalStorage } from 'hooks';
 import { SearchContext } from 'contexts';
+import { getProducts } from 'services';
 
 const PageHome = () => {
   const [products, setProducts] = useState();
@@ -25,21 +26,13 @@ const PageHome = () => {
       return;
     }
     setproductsArray(() => products?.filter((el) => el.title === debouncedSearch));
-  }, [debouncedSearch]);
+  }, [debouncedSearch, products]);
 
   useEffect(() => {
     getProducts()
       .then((res) => setProducts(res.express.products))
       .catch((err) => console.log(err));
   }, []);
-
-  const getProducts = async () => {
-    const response = await fetch('/api/products');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
 
   const toggleWishlistProducts = (product) =>
     setStoredWishlistProducts((prevState) => {
@@ -61,7 +54,7 @@ const PageHome = () => {
       <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
         <S.HomeCardsWrapper>
-          {productsArray?.length &&
+          {productsArray &&
             Object.values(productsArray).map((obj, index) => (
               <Card
                 id={obj.id}
@@ -76,6 +69,7 @@ const PageHome = () => {
                 }}
               />
             ))}
+          {productsArray?.length === 0 && <div>Não encontramos produtos :(</div>}
         </S.HomeCardsWrapper>
       </Container>
     </>
