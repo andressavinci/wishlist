@@ -1,23 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Header } from 'components/Layout';
-import { Container } from 'components/UI';
+import { Card, Container } from 'components/UI';
+import * as S from './styles';
+import { useDebounce, useLocalStorage } from 'hooks';
+import { SearchContext } from 'contexts';
+import { getProducts } from 'services';
 
 const PageHome = () => {
-  const [response, setResponse] = useState();
+  const [products, setProducts] = useState();
+  const [productsArray, setproductsArray] = useState();
+
+  const { search } = useContext(SearchContext);
+  const debouncedSearch = useDebounce(search, 500);
+  const isSearchFieldEmpty = !search || search === '';
+
+  const isProductAmongWishlist = (arr, id) => arr.some((el) => el.id === id);
+  const [storedWishlistProducts, setStoredWishlistProducts] = useLocalStorage(
+    'mn_wishlist_products',
+    []
+  );
 
   useEffect(() => {
-    callApi()
-      .then((res) => setResponse(res.express))
+    if (isSearchFieldEmpty) {
+      setproductsArray(products);
+      return;
+    }
+    setproductsArray(() => products?.filter((el) => el.title === debouncedSearch));
+  }, [debouncedSearch, products]);
+
+  useEffect(() => {
+    getProducts()
+      .then((res) => setProducts(res.express.products))
       .catch((err) => console.log(err));
   }, []);
 
-  const callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
+  const toggleWishlistProducts = (product) =>
+    setStoredWishlistProducts((prevState) => {
+      const isWishlistProduct = isProductAmongWishlist(prevState, product.id);
+      const addProduct = prevState.concat(product);
+      const removeProduct = prevState.filter((el) => el.id !== product.id);
 
-    return body;
-  };
+      return isWishlistProduct ? removeProduct : addProduct;
+    });
 
   const breadcrumbItems = [
     {
@@ -29,8 +53,24 @@ const PageHome = () => {
     <>
       <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
-        <h2>Lista de Produtos</h2>
-        <div>{response}</div>
+        <S.HomeCardsWrapper>
+          {productsArray &&
+            Object.values(productsArray).map((obj, index) => (
+              <Card
+                id={obj.id}
+                image={obj.image}
+                isInWishlist={isProductAmongWishlist(storedWishlistProducts, obj.id)}
+                key={index}
+                price={obj.price}
+                title={obj.title}
+                handleAddToWishlistClick={(event) => {
+                  event.preventDefault();
+                  toggleWishlistProducts(obj);
+                }}
+              />
+            ))}
+          {productsArray?.length === 0 && <div>Não encontramos produtos :(</div>}
+        </S.HomeCardsWrapper>
       </Container>
     </>
   );
