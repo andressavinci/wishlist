@@ -1,5 +1,8 @@
 import styled from 'styled-components/macro';
 import { media } from 'styles';
+import { Mixins } from 'styles';
+
+const { resetButton } = Mixins;
 
 export const CardWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
@@ -21,7 +24,14 @@ export const CardWrapper = styled.div`
     width: 240px;
   `}
   padding: 24px;
+  position: relative;
   text-align: center;
+
+  > button {
+    left: 4px;
+    position: absolute;
+    top: 4px;
+  }
 `;
 
 export const CardImage = styled.img`
@@ -41,4 +51,12 @@ export const CardPrice = styled.h3`
   font-size: 1.2rem;
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
   margin: 40px 0;
+`;
+
+export const CardAddToWishlist = styled.button`
+  ${resetButton};
+
+  [data-icon='box-icon'] {
+    fill: ${({ theme }) => theme.colors.black};
+  }
 `;
