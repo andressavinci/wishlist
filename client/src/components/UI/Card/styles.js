@@ -4,7 +4,7 @@ import { Mixins } from 'styles';
 
 const { resetButton } = Mixins;
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.li`
   background-color: ${({ theme }) => theme.colors.white};
   border: 2px solid ${({ theme }) => theme.colors.lightgrey};
   border-radius: 8px;

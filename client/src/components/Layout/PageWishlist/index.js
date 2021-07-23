@@ -51,7 +51,7 @@ const PageWishlist = () => {
     <>
       <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
-        <S.WishlistCardsWrapper>
+        <S.WishlistCardsList data-testid="MN_WISHLIST_LIST">
           {productsArray?.length ? (
             Object.values(productsArray).map((obj, index) => (
               <Card
@@ -70,7 +70,7 @@ const PageWishlist = () => {
           ) : (
             <div>Sua lista está vazia :(</div>
           )}
-        </S.WishlistCardsWrapper>
+        </S.WishlistCardsList>
       </Container>
     </>
   );

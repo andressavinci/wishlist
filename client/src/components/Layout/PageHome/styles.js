@@ -1,7 +1,11 @@
 import styled from 'styled-components/macro';
+import { Mixins } from 'styles';
 
-export const HomeCardsWrapper = styled.div`
+const { resetList } = Mixins;
+
+export const HomeCardsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  ${resetList};
 `;

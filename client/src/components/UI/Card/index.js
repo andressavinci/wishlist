@@ -4,13 +4,16 @@ import * as S from './styles';
 
 const Card = ({ id, image, price, title, handleAddToWishlistClick, isInWishlist }) => {
   return (
-    <S.CardWrapper data-testid={`MN_CARD_${id}`}>
-      <S.CardAddToWishlist onClick={handleAddToWishlistClick}>
+    <S.CardWrapper data-testid={`MN_CARD_${id}`} data-productid={id}>
+      <S.CardAddToWishlist
+        onClick={handleAddToWishlistClick}
+        data-testid="MN_BUTTON_ADD_TO_WISHLIST"
+      >
         <box-icon
           data-icon="box-icon"
           name="heart"
           type={isInWishlist ? 'solid' : 'regular'}
-        ></box-icon>
+        />
       </S.CardAddToWishlist>
       <S.CardImage src={image} alt="" />
       <S.CardTitle>{title}</S.CardTitle>

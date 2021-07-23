@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+/* eslint-disable no-undef */
+/// <reference types="cypress" />
+
+Cypress.Commands.add('getProductsFromList', (callback) => {
+  const list = cy.get('[data-testid="MN_PRODUCTS_LIST"]');
+  const products = list.find('li');
+  products.then((items) => callback(items));
+});
+
+Cypress.Commands.add('clearProductsLocalStorage', () => {
+  window.localStorage.removeItem('mn_wishlist_products');
+});
+
+Cypress.Commands.add('populateLocalStorage', (arr) => {
+  window.localStorage.setItem('mn_wishlist_products', JSON.stringify(arr));
+});
