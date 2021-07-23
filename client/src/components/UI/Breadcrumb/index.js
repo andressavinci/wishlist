@@ -43,7 +43,7 @@ const Breadcrumb = ({ items }) => {
       <S.BreadcrumbList
         aria-label="Você está em:"
         className={'is-mobile'}
-        data-testid="VG_BREADCRUMB_LIST"
+        data-testid="MN_BREADCRUMB_LIST"
         tabIndex="0"
       >
         {listItems}

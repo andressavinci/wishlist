@@ -53,7 +53,7 @@ const PageHome = () => {
     <>
       <Header breadcrumbItems={breadcrumbItems} />
       <Container as="main">
-        <S.HomeCardsWrapper>
+        <S.HomeCardsList data-testid="MN_PRODUCTS_LIST">
           {productsArray &&
             Object.values(productsArray).map((obj, index) => (
               <Card
@@ -70,7 +70,7 @@ const PageHome = () => {
               />
             ))}
           {productsArray?.length === 0 && <div>Não encontramos produtos :(</div>}
-        </S.HomeCardsWrapper>
+        </S.HomeCardsList>
       </Container>
     </>
   );

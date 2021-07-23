@@ -25,13 +25,13 @@ const Header = ({ breadcrumbItems }) => {
           </S.HeaderWrapper>
         </Container>
       </S.HeaderContainer>
-      {breadcrumbItems?.length && (
+      {breadcrumbItems?.length ? (
         <S.HeaderBreadcrumbWrapper>
           <Container as="section">
             <Breadcrumb items={breadcrumbItems} />
           </Container>
         </S.HeaderBreadcrumbWrapper>
-      )}
+      ) : null}
     </S.Header>
   );
 };
