@@ -13,6 +13,7 @@ const Card = ({ id, image, price, title, handleAddToWishlistClick, isInWishlist 
           data-icon="box-icon"
           name="heart"
           type={isInWishlist ? 'solid' : 'regular'}
+          data-testid="MN_ICON_ADD_TO_WISHLIST"
         />
       </S.CardAddToWishlist>
       <S.CardImage src={image} alt="" />
