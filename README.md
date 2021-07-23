@@ -1,4 +1,4 @@
-# **Hero Project CRA**
+# **Wishlist**
 
 Projeto que traz uma lista de produtos e permite criar uma lista de desejos (wishlist). Criado com [Create React App](https://github.com/facebook/create-react-app) e [Express](http://expressjs.com/).
 
