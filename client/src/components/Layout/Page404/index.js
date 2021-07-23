@@ -7,7 +7,7 @@ const Page404 = () => {
     <>
       <Header />
       <Container as="main">
-        <h1>404</h1>
+        <h1>Página não encontrada :(</h1>
       </Container>
     </>
   );

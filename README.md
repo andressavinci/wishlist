@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# **Hero Project CRA**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projeto que traz uma lista de produtos e permite criar uma lista de desejos (wishlist). Criado com [Create React App](https://github.com/facebook/create-react-app) e [Express](http://expressjs.com/).
 
-## Available Scripts
+## **Stack**
 
-In the project directory, you can run:
+Client
+- [React](https://pt-br.reactjs.org/) & [ReactDOM](https://pt-br.reactjs.org/docs/react-dom.html) são as bibliotecas de componentes;
+- [Styled Components](https://styled-components.com/) para escrever CSS-in-JS;
+- [PropTypes](https://pt-br.reactjs.org/docs/typechecking-with-proptypes.html) para typechecking;
+- [Husky versão 4](https://github.com/typicode/husky) + [Lint Staged](https://github.com/okonet/lint-staged) para rodar Prettier, lint e testes unitários nos arquivos em stage ao executar `git commit`, buscando diminuir a quantidade de commits com erros;
+- [eslint](https://eslint.org/) + [stylelint](https://stylelint.io/) + [prettier](https://prettier.io/) para manter um padrão e boas práticas na escrita do código;
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) para testes unitários;
+- [Cypress](https://www.cypress.io/) para testes end-to-end.
 
-### `yarn start`
+Server
+- [Express](http://expressjs.com/) como frmework web para Node.js;
+- [Concurrently](https://github.com/kimmobrunfeldt/concurrently) para rodar a aplicação em React ao mesmo tempo;
+- [Axios](https://axios-http.com/) para realizar as chamadas http.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## **Dependências**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Para o ambiente de desenvolvimento e testes você vai precisar de:
 
-### `yarn test`
+- [Node](https://nodejs.org/en/) - versão recomendada `14.16.0`;
+- [Cypress](https://www.cypress.io/);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **Rodando o projeto:**
 
-### `yarn build`
+Após clonar o repositório, instale as dependências:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `yarn install` na pasta do projeto;
+- `yarn install` entrando na pasta `client`, que é onde fica a aplicação React.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Visualizando o projeto em modo de desenvolvimento:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `yarn dev` na pasta do projeto;
+- Acessar http://localhost:3000/ para visualizar no navegador.
 
-### `yarn eject`
+## **Testes:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Rodando testes unitários:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `yarn unit`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Visualizar a cobetura dos testes unitários:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `yarn coverage`
 
-## Learn More
+Rodando testes End-to-End:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `yarn e2e` (a aplicação deve estar em execução)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## **Linters:**
 
-### Code Splitting
+Rodando a verificação do **stylelint** em arquivos de estilo procurando más práticas:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `yarn lint:css`
 
-### Analyzing the Bundle Size
+Rodando a verificação do **eslint** em arquivos `.js` procurando más práticas:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `yarn lint`
 
-### Making a Progressive Web App
+Rodando o **eslint** para tentar corrigir pequenos problemas, como warnings:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `yarn lint:fix`
 
-### Advanced Configuration
+Rodando a verificação do **prettier** em arquivos `.js` procurando inconsistências:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- `yarn prettier:check`
 
-### Deployment
+Rodando o **prettier** para tentar corrigir inconsistências no padrão de escrita de código:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `yarn prettier:fix`
 
-### `yarn build` fails to minify
+## **Deploy**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `yarn build`
+
+Este é o comando padrão de build do projeto que disponibiliza o React em modo de produção e arquivos otimizados.
+Ao rodar o comando, o resultado é uma pasta `build` criada no diretório raíz ( `/` ).
