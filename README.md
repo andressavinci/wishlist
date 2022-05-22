@@ -79,3 +79,7 @@ Rodando o **prettier** para tentar corrigir inconsistências no padrão de escri
 
 Este é o comando padrão de build do projeto que disponibiliza o React em modo de produção e arquivos otimizados.
 Ao rodar o comando, o resultado é uma pasta `build` criada no diretório raíz ( `/` ).
+
+## **Trubleshooting**
+
+Caso a lista de produtos não seja exibida e acuse um erro `403 Forbidden` na aba network, a porta do server pode já estar sendo utilizada (pode ser confirmado no terminal). Uma maneira simples de resolver é alterar a porta no `server.js` e no proxy do `package.json`.
